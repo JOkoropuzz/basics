@@ -17,7 +17,7 @@ public class Main {
         //Блок 3-его задания
         System.out.println("Exercise 3");
         int number = 10500;
-        int result = (number/10)/10;
+        double result = ((double)number/10)/10;
         System.out.println(result+"\n");
 
         //Блок 4-ого задания
