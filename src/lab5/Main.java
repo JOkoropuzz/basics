@@ -1,6 +1,5 @@
 package lab5;
 
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class Main {
         String text = "Some бяка text, with words and words and words!";
         System.out.println("Самое длинное слово: " + largeWord(text));
 
-        String word = "madam";
+        String word = "Madam";
         System.out.println(isPalindrom(word));
 
         System.out.println(censored(text));
@@ -32,6 +31,7 @@ public class Main {
 
     //ex2
     public static boolean isPalindrom(String word){
+        word = word.toLowerCase();
         String[] chars = word.split("");
         boolean res = false;
         for (int i = 0; i<chars.length/2; i++){
@@ -45,21 +45,13 @@ public class Main {
     }
 
     //ex3
-    static List<String> badWords = Arrays.asList("бяка", "бяка!", "Бяка", "Бяка!", "бяка?", "Бяка?",
-            "бяка,", "Бяка,", "бяка.", "Бяка.", "бяка-", "-бяка"); //Список плохих слов
-
     public static String censored(String text){
-        StringBuilder res = new StringBuilder();
-        String[] words = text.split(" ");
-        for (String word : words){
-            for (String badWord:badWords){
-                if (word.equals(badWord)){
-                    word = "[вырезано цензурой]";
-                break;}
-            }
-            res.append(word).append(" ");
+        List<String> badWords = Arrays.asList("бяка", "бяка!", "Бяка", "Бяка!", "бяка?", "Бяка?",
+                "бяка,", "Бяка,", "бяка.", "Бяка.", "бяка-", "-бяка");
+        for(String bw: badWords){
+            text = text.replaceAll(bw, "[вырезано цензурой]");
         }
-        return res.toString();
+        return text;
     }
 
     //ex4
