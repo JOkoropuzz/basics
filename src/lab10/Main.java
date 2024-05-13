@@ -15,6 +15,9 @@ public class Main {
         File file2 = new File("files/outText.txt");
         concatTwoFile(file, file2, path2);
 
+        InputStream is = null;
+        InputStream is2 = null;
+        OutputStream os = null;
         dollarText(file);
 
     }
@@ -50,10 +53,14 @@ public class Main {
 
     //ex3
     public static void concatTwoFile(File file1, File file2, String path) {
+        InputStream is = null;
+        InputStream is2 = null;
+        OutputStream os = null;
+
         try {
-            InputStream is = new FileInputStream(file1);
-            InputStream is2 = new FileInputStream(file2);
-            OutputStream os = new FileOutputStream(path);
+            is = new FileInputStream(file1);
+            is2 = new FileInputStream(file2);
+            os = new FileOutputStream(path);
 
             while (is.available() > 0) {
                 os.write(is.read());
@@ -63,14 +70,26 @@ public class Main {
                 os.write(is2.read());
             }
 
-            os.close();
-            is.close();
-            is2.close();
-
         } catch (IOException e) {
             System.err.println(e.getMessage());
-        }
+        } finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
 
+                if (is2 != null) {
+                    is.close();
+                }
+
+                if (os != null) {
+                    is.close();
+                }
+
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     //ex4
