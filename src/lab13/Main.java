@@ -34,14 +34,9 @@ public class Main {
         System.out.println(counter.getCount());
 
         //ex4
-        Exchanger<Boolean> exchanger = new Exchanger<>(); //Flag tacking
-        try (ExecutorService executorService3 = Executors.newCachedThreadPool()) {
-            executorService3.submit(new MyNameRunnable("I'm Biba!", exchanger, true));
-            executorService3.submit(new MyNameRunnable("Am I Boba?", exchanger, false));
-            executorService3.shutdown();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-
+        MyNameThread name1 = new MyNameThread("Biba!", 0);
+        MyNameThread name2 = new MyNameThread("Boba?", 0);
+        name1.start();
+        name2.start();
     }
 }
